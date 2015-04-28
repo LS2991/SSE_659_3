@@ -86,7 +86,6 @@ public class PartsInputGUI extends JFrame implements ActionListener, Observer{
         setVisible(true);
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 
 		String action = e.getActionCommand();
@@ -380,31 +379,26 @@ public class PartsInputGUI extends JFrame implements ActionListener, Observer{
 		}
 	}
 
-	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void update(String startDate, String endDate) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void update(String string) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void updateMonthInfo(String buttonText, String monthText, boolean changeMonth) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void updateExisting(Database db) {
 		// TODO Auto-generated method stub
 		this.db = db;
@@ -439,7 +433,6 @@ public class PartsInputGUI extends JFrame implements ActionListener, Observer{
 		}
 	}
 
-	@Override
 	public void updateNew(Database db) {
 		// TODO Auto-generated method stub
 		this.db = db;

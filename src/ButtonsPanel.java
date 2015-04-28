@@ -83,31 +83,26 @@ public class ButtonsPanel extends JPanel implements ActionListener, Subject {
 		return buttonArray;
 	}
 
-	@Override
 	public void registerObserver(Observer o) {
 		// TODO Auto-generated method stub
 		observers.add(o);
 	}
 
-	@Override
 	public void removeObserver(Observer o) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void notifyObservers() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void notifyObservers(String startDate, String endDate) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void notifyObservers(String string) {
 		// TODO Auto-generated method stub
 		for(int x = 0; x < observers.size(); x++) {

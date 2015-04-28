@@ -44,7 +44,6 @@ public class openDBPanel extends JPanel implements ActionListener ,Subject {
 		add(openNew);
 	}
 
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String action = e.getActionCommand();
@@ -70,19 +69,16 @@ public class openDBPanel extends JPanel implements ActionListener ,Subject {
 	public JButton getNewButton() {
 		return openNew;
 	}
-	@Override
 	public void registerObserver(Observer o) {
 		// TODO Auto-generated method stub
 		observers.add(o);
 	}
 
-	@Override
 	public void removeObserver(Observer o) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void notifyObservers() {
 		// TODO Auto-generated method stub
 		
@@ -100,13 +96,11 @@ public class openDBPanel extends JPanel implements ActionListener ,Subject {
 		}
 	}
 
-	@Override
 	public void notifyObservers(String start1, String string2) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void notifyObservers(String string) {
 		// TODO Auto-generated method stub
 		

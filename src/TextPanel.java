@@ -192,7 +192,6 @@ public class TextPanel extends JPanel implements ActionListener, Observer {
 		currMonth = new NewDate(startMonth.toString());
 	}
 
-	@Override
 	public void update(String startDate, String endDate) {
 		// TODO Auto-generated method stub
 		startMonth = new NewDate(startDate);
@@ -203,20 +202,17 @@ public class TextPanel extends JPanel implements ActionListener, Observer {
 		db.insertDates(startDate, endDate);
 	}
 
-	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 		//Blank Method
 	}
 
-	@Override
 	public void update(String string) {
 		// TODO Auto-generated method stub
 		nameFromButtonPanel = string;
 		monthCounter.setText("Month: " + currMonth.toString());
 	}
 
-	@Override
 	public void updateMonthInfo(String buttonText, String monthText, boolean changeMonth) {
 		// TODO Auto-generated method stub
 		nameFromButtonPanel = buttonText;
@@ -226,7 +222,6 @@ public class TextPanel extends JPanel implements ActionListener, Observer {
 		monthCounter.setText("Month: " + currMonth.toString());
 	}
 
-	@Override
 	public void updateExisting(Database db) {
 		// TODO Auto-generated method stub
 		this.db = db;
@@ -252,7 +247,6 @@ public class TextPanel extends JPanel implements ActionListener, Observer {
 		}
 	}
 
-	@Override
 	public void updateNew(Database db) {
 		// TODO Auto-generated method stub
 		this.db = db;
