@@ -55,59 +55,66 @@ public class TextPanel extends JPanel implements ActionListener, Observer {
 	public void actionPerformed(ActionEvent e) {
 		if(currMonth.compareTo(endMonth) != 0) {
 		
-			in = Integer.parseInt(inField.getText());
-			out = Integer.parseInt(outField.getText());
-			
-			//inserts values in to database
-			db.insert(currMonth.toString(), nameFromButtonPanel, out, in, (in - out));
-			
-			rs = db.select(currMonth.toString(), nameFromButtonPanel);
-			ResultSet rs2 = db.select(currMonth.toString(), "Sensor Panel");
-			if(changeMonth) {
-				changeMonth = false;
-				//monthCounter.setText("Month: " + currMonth.toString());
-			}
-			else {
-				currMonth.incMonth();
-				monthCounter.setText("Month: " + currMonth.toString());
-			}
-			
-			try {
-				while(rs2.next()) {
-					String date = rs2.getString("DATE");
-					String product = rs2.getString("PRODUCT");
-					int in = rs2.getInt("SHIPMENTS");
-					int out = rs2. getInt("INSTALLS");
-					
-					System.out.println("text " + date);
-					System.out.println("text " + product);
-					System.out.println("text " + in);
-					System.out.println("text " + out);
+
+			if(error_checking(inField.getText()) && error_checking(outField.getText()))
+			{
+				in = Integer.parseInt(inField.getText());
+				out = Integer.parseInt(outField.getText());
+				//inserts values in to database
+				db.insert(currMonth.toString(), nameFromButtonPanel, out, in, (in - out));
+				
+				rs = db.select(currMonth.toString(), nameFromButtonPanel);
+				ResultSet rs2 = db.select(currMonth.toString(), "Sensor Panel");
+				if(changeMonth) {
+					changeMonth = false;
+					//monthCounter.setText("Month: " + currMonth.toString());
 				}
-			} catch (SQLException e2) {
-				// TODO Auto-generated catch block
-				e2.printStackTrace();
-			}
-			try {
-				while (rs.next()) {
-					String date = rs.getString("DATE");
-					String product = rs.getString("PRODUCT");
-					int in = rs.getInt("SHIPMENTS");
-					int out = rs. getInt("INSTALLS");
-					
-					System.out.println("text " + date);
-					System.out.println("text " + product);
-					System.out.println("text " + in);
-					System.out.println("text " + out);
+				else {
+					currMonth.incMonth();
+					monthCounter.setText("Month: " + currMonth.toString());
 				}
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				
+				try {
+					while(rs2.next()) {
+						String date = rs2.getString("DATE");
+						String product = rs2.getString("PRODUCT");
+						int in = rs2.getInt("SHIPMENTS");
+						int out = rs2. getInt("INSTALLS");
+						
+						System.out.println("text " + date);
+						System.out.println("text " + product);
+						System.out.println("text " + in);
+						System.out.println("text " + out);
+					}
+				} catch (SQLException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+				try {
+					while (rs.next()) {
+						String date = rs.getString("DATE");
+						String product = rs.getString("PRODUCT");
+						int in = rs.getInt("SHIPMENTS");
+						int out = rs. getInt("INSTALLS");
+						
+						System.out.println("text " + date);
+						System.out.println("text " + product);
+						System.out.println("text " + in);
+						System.out.println("text " + out);
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				System.out.println("NOT RESET");
 			}
-			System.out.println("NOT RESET");
+			else
+				monthCounter.setText("Please check values");
 		}
 		
 		else {
+			if(error_checking(inField.getText()) && error_checking(outField.getText()))
+			{
 			in = Integer.parseInt(inField.getText());
 			out = Integer.parseInt(outField.getText());
 			db.insert(currMonth.toString(), nameFromButtonPanel, out, in, (in - out));
@@ -138,6 +145,9 @@ public class TextPanel extends JPanel implements ActionListener, Observer {
 			
 			if(changeMonth)
 				changeMonth = false;
+			}
+			else
+				monthCounter.setText("Please check values");
 		}
 	}
 	
@@ -150,11 +160,19 @@ public class TextPanel extends JPanel implements ActionListener, Observer {
 	}
 	
 	public void setProdIn() {
-		in = Integer.parseInt(inField.getText());
+	    try{
+	    	in = Integer.parseInt(inField.getText());
+	    }catch(NumberFormatException e){
+	    	monthCounter.setText("Please check values");
+	    }
 	}
 	
 	public void setProdOut() {
-		out = Integer.parseInt(outField.getText());
+	    try{
+	    	in = Integer.parseInt(outField.getText());
+	    }catch(NumberFormatException e){
+	    	monthCounter.setText("Please check values");
+	    }
 	}
 	
 	public JButton getButton() {
@@ -251,5 +269,19 @@ public class TextPanel extends JPanel implements ActionListener, Observer {
 		// TODO Auto-generated method stub
 		this.db = db;
 	}
-
+	public boolean error_checking(String value)
+	{
+		int number;
+	    try{
+	    	number = Integer.parseInt(value);
+	    }catch(NumberFormatException e){
+	    	monthCounter.setText("Please check values");
+	    	return false;
+	    }
+	    
+		if(number < 0)
+			return false;
+		
+		return true;
+	}
 }
