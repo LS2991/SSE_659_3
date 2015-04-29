@@ -6,7 +6,7 @@ import org.junit.Test;
 public class UnitTests {
 
 	@Test
-	public void test() {
+	public void Texttest() {
 		TextPanel Test = new TextPanel();
 		Test.inField.setText("10");
 		Test.outField.setText("-3");
@@ -22,4 +22,14 @@ public class UnitTests {
 
 	}
 
+	@Test
+	public void MonthlyTotaltest() {
+		Part Test = new Part();
+		
+		Test.setTotalMonths(2);
+		Test.setMonthlyTotals(0, 1, 2);
+		Test.setMonthlyTotals(1, 3, 4);
+		
+		assertEquals(Test.monthlyTotals[0], -1);
+	}
 }
