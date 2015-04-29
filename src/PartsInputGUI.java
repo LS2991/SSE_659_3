@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.io.File; 
@@ -125,9 +126,17 @@ public class PartsInputGUI extends JFrame implements ActionListener, Observer{
 		
 		if(action.equals("buttonPane")) {
 			if(!buttonPane.getEditMonthField().getText().equals("")) {
+				if(firstPane.getMonthMap().get(buttonPane.getEditMonthField().getText().toString()) != null)
+				{
 				changeMonth = true;
+				setPane(textPane);
+				}
+				else
+					JOptionPane.showMessageDialog(this, "Not a valid month, please enter a valid month");
 			}
-			setPane(textPane);
+			else
+				setPane(textPane);
+ 
 		}
 		
 		//Outputs to an Excel file
@@ -285,17 +294,21 @@ public class PartsInputGUI extends JFrame implements ActionListener, Observer{
 		}
 		
 		else if(action.equals("Submit") && changeMonth) {
-			textPane.setProdIn();
-			textPane.setProdOut();
-			
-			
-			setBuilderValues();
-			setPane(buttonPane);
-			
-			//textPane.resetMonthCount();
-			
-			changeMonth = false;
-			buttonPane.getEditMonthField().setText("");
+			if(firstPane.getMonthMap().get(textPane.getCurrMonth().toString()) != null)
+			{
+				textPane.setProdIn();
+				textPane.setProdOut();
+				
+				
+				setBuilderValues();
+				setPane(buttonPane);
+				
+				//textPane.resetMonthCount();
+				
+				changeMonth = false;
+				buttonPane.getEditMonthField().setText("");
+			}
+
 		}
 		
 		else if(action.equals("Submit")){
@@ -345,16 +358,20 @@ public class PartsInputGUI extends JFrame implements ActionListener, Observer{
 	}
 	
 	public void setBuilderValuesHelper(Part part) {
-		System.out.println(textPane.getCurrMonth().toString());
-		int currMonthNum = firstPane.getMonthMap().get(textPane.getCurrMonth().toString());
-		//System.out.println(textPane.getCurrMonth().toString());
-		System.out.println("CURR MONTH " + currMonthNum);
-		System.out.println("ARRAY CHECK" + part.getMonthyTotal(currMonthNum));
-		part.setMonthlyTotals(currMonthNum, textPane.getProdIn(), textPane.getProdOut());
-		//System.out.println(textPane.getMonthCount());
-		//System.out.println(textPane.getProdIn() +" " + textPane.getProdOut());
-		//System.out.println(part.getMonthyTotal(textPane.getMonthCount()));
-		//System.out.println(part.getCumulativeTotal());
+		int currMonthNum = 0;
+		if(firstPane.getMonthMap().get(textPane.getCurrMonth().toString()) != null)
+		{
+			currMonthNum = firstPane.getMonthMap().get(textPane.getCurrMonth().toString());
+			System.out.println(textPane.getCurrMonth().toString());
+			//System.out.println(textPane.getCurrMonth().toString());
+			System.out.println("CURR MONTH " + currMonthNum);
+			System.out.println("ARRAY CHECK" + part.getMonthyTotal(currMonthNum));
+			part.setMonthlyTotals(currMonthNum, textPane.getProdIn(), textPane.getProdOut());
+			//System.out.println(textPane.getMonthCount());
+			//System.out.println(textPane.getProdIn() +" " + textPane.getProdOut());
+			//System.out.println(part.getMonthyTotal(textPane.getMonthCount()));
+			//System.out.println(part.getCumulativeTotal());
+		}
 	}
 	
 	public InventoryPartsList getList() {

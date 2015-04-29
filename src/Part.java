@@ -23,23 +23,26 @@ public class Part {
 	}
 	
 	public void setMonthlyTotals(int month, int in, int out) {
-		if(monthlyTotals[month - 1] == 0) {
-			monthlyTotals[month - 1] = (in - out);
-			System.out.println("IN if: " + (in - out));
-			System.out.println("IN if: " + monthlyTotals[month - 1]);
-			cumulative += monthlyTotals[month - 1];
-			System.out.println("IN if: " + cumulative);
-		}
-		
-		else {
-			cumulative -= monthlyTotals[month - 1];
-			System.out.println("OUT if: " + cumulative);
-			System.out.println("OUT if: " + in);
-			monthlyTotals[month - 1] = (in - out);
-			System.out.println("OUT if: " + (in - out));
-			System.out.println("OUT if: " + monthlyTotals[month - 1]);
-			cumulative += monthlyTotals[month - 1];
-			System.out.println("OUT if: " + cumulative);
+		if(month > 0)
+		{
+			if(monthlyTotals[month - 1] == 0) {
+				monthlyTotals[month - 1] = (in - out);
+				System.out.println("IN if: " + (in - out));
+				System.out.println("IN if: " + monthlyTotals[month - 1]);
+				cumulative += monthlyTotals[month - 1];
+				System.out.println("IN if: " + cumulative);
+			}
+			
+			else {
+				cumulative -= monthlyTotals[month - 1];
+				System.out.println("OUT if: " + cumulative);
+				System.out.println("OUT if: " + in);
+				monthlyTotals[month - 1] = (in - out);
+				System.out.println("OUT if: " + (in - out));
+				System.out.println("OUT if: " + monthlyTotals[month - 1]);
+				cumulative += monthlyTotals[month - 1];
+				System.out.println("OUT if: " + cumulative);
+			}
 		}
 	}
 	
