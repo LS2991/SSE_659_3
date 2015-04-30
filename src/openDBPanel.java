@@ -8,6 +8,7 @@ import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -15,7 +16,8 @@ import javax.swing.JTextField;
 public class openDBPanel extends JPanel implements ActionListener ,Subject {
 
 	JButton openExisting, openNew;
-	JTextField openDatabaseField, createDatabaseField;
+	JLabel blank;
+	JTextField Databasename;
 	
 	Database db;
 	ArrayList<Observer> observers;
@@ -35,12 +37,11 @@ public class openDBPanel extends JPanel implements ActionListener ,Subject {
 		openNew.addActionListener(this);
 		openNew.setActionCommand("new");
 		
-		openDatabaseField = new JTextField(10);
-		createDatabaseField = new JTextField(10);
-		
-		add(openDatabaseField);
+		Databasename = new JTextField(10);
+		blank = new JLabel("");
+		add(Databasename);
 		add(openExisting);
-		add(createDatabaseField);
+		add(blank);
 		add(openNew);
 	}
 
@@ -49,13 +50,13 @@ public class openDBPanel extends JPanel implements ActionListener ,Subject {
 		String action = e.getActionCommand();
 		
 		if(action.equals("existing")) {
-			db = new Database(openDatabaseField.getText());
+			db = new Database(Databasename.getText());
 			db.createTable();
 			notifyDatabaseExisting(db);
 			System.out.println("OPEN");
 		}
 		else if(action.equals("new")) {
-			db = new Database(createDatabaseField.getText());
+			db = new Database(Databasename.getText());
 			db.createTable();
 			notifyDatabaseNew(db);
 			System.out.println("NEW");

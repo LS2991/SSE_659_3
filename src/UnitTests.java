@@ -1,5 +1,8 @@
 import static org.junit.Assert.*;
 
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+
 import org.junit.Test;
 
 
@@ -32,4 +35,28 @@ public class UnitTests {
 		
 		assertEquals(Test.monthlyTotals[0], -1);
 	}
+	
+	/*@Test
+	public void EditMonthtest() throws IOException {
+		ButtonsPanel buttonPane = new ButtonsPanel(); 
+		TextPanel textPane = new TextPanel();
+		TextPanel2 firstPane = new TextPanel2();
+		openDBPanel openDBPane = new openDBPanel();
+		
+		firstPane.endMonthsInput.setText("5/2015");
+		firstPane.startMonthsInput.setText("2/2015");
+		firstPane.actionPerformed((ActionEvent) firstPane.submit.getAction());
+		PartsInputGUI Test = new PartsInputGUI(buttonPane, textPane, firstPane, openDBPane);
+		
+		buttonPane.editMonthField.setText("3/2015");
+		Test.actionPerformed((ActionEvent) buttonPane.buttonArray[0].getAction());
+		
+		assertTrue(Test.changeMonth == true);
+		
+		buttonPane.editMonthField.setText("7/2015");
+		Test.actionPerformed((ActionEvent) buttonPane.buttonArray[0].getAction());
+		assertTrue(Test.changeMonth == false);
+		
+		
+	}*/
 }

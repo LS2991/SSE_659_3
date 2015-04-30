@@ -99,7 +99,7 @@ public class TextPanel2 extends JPanel implements ActionListener, Subject{
 	}
 	
 	public HashMap<String, Integer> getMonthMap() {
-		return months;
+		return months; 
 	}
 	
 	public void setMaxMonths() {

@@ -128,8 +128,8 @@ public class PartsInputGUI extends JFrame implements ActionListener, Observer{
 			if(!buttonPane.getEditMonthField().getText().equals("")) {
 				if(firstPane.getMonthMap().get(buttonPane.getEditMonthField().getText().toString()) != null)
 				{
-				changeMonth = true;
-				setPane(textPane);
+					changeMonth = true;
+					setPane(textPane);
 				}
 				else
 					JOptionPane.showMessageDialog(this, "Not a valid month, please enter a valid month");
